@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { Download, FileText, Search, Calendar } from 'lucide-react';
+import { Download, FileText, Search, Calendar, Plus, ChevronLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import { toast } from 'react-hot-toast';
@@ -68,11 +69,16 @@ export default function Dashboard() {
     <div className="flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto items-start">
       
       {/* Sidebar (Filters & List) */}
-      <div className="w-full lg:w-1/3 flex flex-col gap-4 sticky top-6">
+      <div className={`w-full lg:w-1/3 flex-col gap-4 lg:sticky lg:top-6 ${selectedReport ? 'hidden lg:flex' : 'flex'}`}>
         <div className="flex justify-between items-center bg-white p-4 shadow rounded-lg border-l-4 border-brand-yellow">
           <h2 className="text-xl font-bold text-brand-dark">Dashboard Overview</h2>
           <span className="text-gray-500 text-sm font-semibold">{reports.length} Reports</span>
         </div>
+        
+        {/* Prominent Mobile-Friendly Action Button */}
+        <Link to="/new" className="w-full flex items-center justify-center gap-2 bg-brand-yellow text-brand-dark px-4 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-colors shadow-sm text-lg">
+          <Plus size={22} /> Create New Report
+        </Link>
 
         {/* Filters Section */}
         <div className="bg-white p-4 shadow rounded-lg space-y-3">
@@ -123,7 +129,18 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content Area */}
-      <div className="w-full lg:w-2/3">
+      <div className={`w-full lg:w-2/3 ${!selectedReport ? 'hidden lg:block' : 'block'}`}>
+        
+        {/* Mobile Back Button */}
+        <div className="lg:hidden mb-4">
+          <button
+            onClick={() => setSelectedReport(null)}
+            className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-4 py-3 rounded-lg font-bold w-full shadow-sm hover:bg-gray-200 transition-colors"
+          >
+            <ChevronLeft size={20} /> Back to Reports List
+          </button>
+        </div>
+
         {!selectedReport ? (
           <div className="bg-white shadow-lg rounded-lg border border-gray-200 p-12 flex flex-col items-center justify-center text-center min-h-[60vh]">
             <FileText size={64} className="text-gray-300 mb-4" />
@@ -132,14 +149,14 @@ export default function Dashboard() {
           </div>
         ) : (
           <div className="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 mb-8">
-            <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <div className="bg-gray-50 px-4 sm:px-6 py-4 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
-                <h3 className="text-lg font-bold text-gray-900">{selectedReport.project_name}</h3>
+                <h3 className="text-lg font-bold text-gray-900 break-words">{selectedReport.project_name}</h3>
                 <p className="text-sm text-gray-500">Submitted on {selectedReport.date}</p>
               </div>
               <button
                 onClick={handleDownload}
-                className="flex items-center gap-2 bg-brand-yellow text-brand-dark px-4 py-2 rounded-md font-medium hover:bg-yellow-500 transition-colors"
+                className="w-full sm:w-auto flex justify-center items-center gap-2 bg-brand-yellow text-brand-dark px-4 py-3 sm:py-2 rounded-md font-bold hover:bg-yellow-500 transition-colors"
               >
                 <Download size={16} /> Download PDF
               </button>

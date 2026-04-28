@@ -145,30 +145,32 @@ export default function NewReport() {
         <div className="mt-8 border-t pt-6">
           <h3 className="font-bold text-gray-800 mb-4 text-lg">A) Material Inventory</h3>
           <div className="overflow-x-auto shadow-sm ring-1 ring-black ring-opacity-5 rounded-lg">
-            <table className="min-w-full divide-y divide-gray-300 bg-white">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Material</th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Opening Bal.</th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Day's Receipt</th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Day's Cons.</th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Closing Bal.</th>
-                  <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Remarks</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {Object.keys(formData.inventory).map(item => (
-                  <tr key={item}>
-                    <td className="whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-900 border-r">{item}</td>
-                    {['opening', 'receipt', 'consumed', 'closing', 'remarks'].map(field => (
-                      <td key={field} className="px-1 py-1 border-r last:border-0">
-                        <input type="text" className="block w-full rounded border-gray-300 focus:border-brand-yellow focus:ring-brand-yellow sm:text-sm p-1 border" value={formData.inventory[item][field]} onChange={(e) => handleInventoryChange(item, field, e.target.value)} />
-                      </td>
-                    ))}
+            <div className="min-w-[800px]">
+              <table className="min-w-full divide-y divide-gray-300 bg-white">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Material</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Opening Bal.</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Day's Receipt</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Day's Cons.</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase border-r">Closing Bal.</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Remarks</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {Object.keys(formData.inventory).map(item => (
+                    <tr key={item}>
+                      <td className="whitespace-nowrap px-3 py-2 text-sm font-medium text-gray-900 border-r">{item}</td>
+                      {['opening', 'receipt', 'consumed', 'closing', 'remarks'].map(field => (
+                        <td key={field} className="px-1 py-1 border-r last:border-0">
+                          <input type="text" className="block w-full rounded border-gray-300 focus:border-brand-yellow focus:ring-brand-yellow sm:text-sm p-1 border" value={formData.inventory[item][field]} onChange={(e) => handleInventoryChange(item, field, e.target.value)} />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
@@ -269,11 +271,11 @@ export default function NewReport() {
           <input type="file" multiple accept="image/*" onChange={handleFileChange} className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-brand-yellow file:text-brand-dark hover:file:bg-yellow-500" />
         </div>
 
-        <div className="flex justify-end pt-4">
-          <button type="button" onClick={() => navigate('/')} className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow mr-3">
+        <div className="flex flex-col-reverse sm:flex-row justify-end pt-6 gap-3 border-t">
+          <button type="button" onClick={() => navigate('/')} className="w-full sm:w-auto justify-center bg-white py-3 sm:py-2 px-6 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow">
             Cancel
           </button>
-          <button type="submit" disabled={loading} className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-brand-dark bg-brand-yellow hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow disabled:opacity-50">
+          <button type="submit" disabled={loading} className="w-full sm:w-auto justify-center inline-flex py-3 sm:py-2 px-6 border border-transparent shadow-sm text-sm font-bold rounded-md text-brand-dark bg-brand-yellow hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-yellow disabled:opacity-50">
             {loading ? 'Saving...' : 'Save Report'}
           </button>
         </div>

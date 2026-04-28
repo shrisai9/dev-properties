@@ -78,9 +78,9 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
-      <div className="flex justify-between items-center bg-brand-dark text-white p-6 shadow rounded-lg border-l-4 border-brand-yellow">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-brand-dark text-white p-6 shadow rounded-lg border-l-4 border-brand-yellow">
         <h2 className="text-3xl font-bold">Admin Portal</h2>
-        <button onClick={exportToCSV} className="flex items-center gap-2 bg-brand-yellow text-brand-dark px-4 py-2 rounded-md font-semibold hover:bg-yellow-500 transition">
+        <button onClick={exportToCSV} className="w-full sm:w-auto flex justify-center items-center gap-2 bg-brand-yellow text-brand-dark px-4 py-3 sm:py-2 rounded-md font-bold hover:bg-yellow-500 transition">
           <Download size={18} /> Export All to CSV
         </button>
       </div>
@@ -102,7 +102,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Approval Workflow Table */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      <div className="bg-white rounded-lg shadow overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
