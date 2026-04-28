@@ -167,7 +167,7 @@ export default function Dashboard() {
               <div id={`report-${selectedReport.id}`} className="p-4 sm:p-8 bg-white text-black relative min-w-[800px]">
               {/* Status Badge */}
               {selectedReport.status && (
-                <div className="absolute top-8 right-8">
+                <div className="absolute top-8 right-8" data-html2canvas-ignore="true">
                   <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
                     selectedReport.status === 'Approved' ? 'bg-green-100 text-green-800 border-green-800' :
                     selectedReport.status === 'Needs Revision' ? 'bg-red-100 text-red-800 border-red-800' :
