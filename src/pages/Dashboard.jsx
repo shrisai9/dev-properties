@@ -146,7 +146,8 @@ export default function Dashboard() {
             </div>
             
             {/* PDF Report Area */}
-            <div id={`report-${selectedReport.id}`} className="p-8 bg-white text-black relative">
+            <div className="overflow-x-auto w-full">
+              <div id={`report-${selectedReport.id}`} className="p-4 sm:p-8 bg-white text-black relative min-w-[800px]">
               {/* Status Badge */}
               {selectedReport.status && (
                 <div className="absolute top-8 right-8">
@@ -338,6 +339,7 @@ export default function Dashboard() {
                   <p className="font-bold text-sm">Checked By</p>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         )}

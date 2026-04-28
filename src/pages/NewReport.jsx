@@ -119,7 +119,7 @@ export default function NewReport() {
   };
 
   return (
-    <div className="p-8 bg-white shadow-lg rounded-lg border-t-8 border-brand-yellow max-w-4xl mx-auto">
+    <div className="p-4 sm:p-8 bg-white shadow-lg rounded-lg border-t-8 border-brand-yellow max-w-4xl mx-auto w-full">
       <h2 className="text-2xl font-bold text-brand-dark mb-6 border-b pb-2">New Daily Progress Report</h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -178,21 +178,23 @@ export default function NewReport() {
             <h3 className="font-bold text-gray-800 text-lg">B) Cement Consumption Statement</h3>
             <button type="button" onClick={() => addRow('cement_consumption', { activity: '', qty: '', bags: '' })} className="bg-gray-100 border text-sm px-3 py-1 rounded shadow-sm hover:bg-gray-200">+ Add Row</button>
           </div>
-          <div className="space-y-2">
-            <div className="grid grid-cols-12 gap-2 font-medium text-sm text-gray-600 px-1">
-              <div className="col-span-5">Activity</div>
-              <div className="col-span-3">Qty</div>
-              <div className="col-span-3">No. of Bags</div>
-              <div className="col-span-1 text-center">Act</div>
-            </div>
-            {formData.cement_consumption.map((row, i) => (
-              <div key={i} className="grid grid-cols-12 gap-2 items-center">
-                <div className="col-span-5"><input type="text" className="w-full border rounded p-2 text-sm" placeholder="Activity" value={row.activity} onChange={(e) => handleArrayChange('cement_consumption', i, 'activity', e.target.value)} /></div>
-                <div className="col-span-3"><input type="text" className="w-full border rounded p-2 text-sm" placeholder="Qty" value={row.qty} onChange={(e) => handleArrayChange('cement_consumption', i, 'qty', e.target.value)} /></div>
-                <div className="col-span-3"><input type="text" className="w-full border rounded p-2 text-sm" placeholder="Bags" value={row.bags} onChange={(e) => handleArrayChange('cement_consumption', i, 'bags', e.target.value)} /></div>
-                <div className="col-span-1 text-center"><button type="button" onClick={() => removeRow('cement_consumption', i)} className="text-red-500 hover:text-red-700 text-lg font-bold">&times;</button></div>
+          <div className="overflow-x-auto pb-2">
+            <div className="min-w-[500px] space-y-2">
+              <div className="grid grid-cols-12 gap-2 font-medium text-sm text-gray-600 px-1">
+                <div className="col-span-5">Activity</div>
+                <div className="col-span-3">Qty</div>
+                <div className="col-span-3">No. of Bags</div>
+                <div className="col-span-1 text-center">Act</div>
               </div>
-            ))}
+              {formData.cement_consumption.map((row, i) => (
+                <div key={i} className="grid grid-cols-12 gap-2 items-center">
+                  <div className="col-span-5"><input type="text" className="w-full border rounded p-2 text-sm" placeholder="Activity" value={row.activity} onChange={(e) => handleArrayChange('cement_consumption', i, 'activity', e.target.value)} /></div>
+                  <div className="col-span-3"><input type="text" className="w-full border rounded p-2 text-sm" placeholder="Qty" value={row.qty} onChange={(e) => handleArrayChange('cement_consumption', i, 'qty', e.target.value)} /></div>
+                  <div className="col-span-3"><input type="text" className="w-full border rounded p-2 text-sm" placeholder="Bags" value={row.bags} onChange={(e) => handleArrayChange('cement_consumption', i, 'bags', e.target.value)} /></div>
+                  <div className="col-span-1 text-center"><button type="button" onClick={() => removeRow('cement_consumption', i)} className="text-red-500 hover:text-red-700 text-lg font-bold">&times;</button></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -232,19 +234,21 @@ export default function NewReport() {
             <h3 className="font-bold text-gray-800 text-lg">D) Material Ordered</h3>
             <button type="button" onClick={() => addRow('material_ordered', { description: '', requisition: '' })} className="bg-gray-100 border text-sm px-3 py-1 rounded shadow-sm hover:bg-gray-200">+ Add Row</button>
           </div>
-          <div className="space-y-2">
-            <div className="grid grid-cols-12 gap-2 font-medium text-sm text-gray-600 px-1">
-              <div className="col-span-7">Description</div>
-              <div className="col-span-4">Requisition No.</div>
-              <div className="col-span-1 text-center">Act</div>
-            </div>
-            {formData.material_ordered.map((row, i) => (
-              <div key={i} className="grid grid-cols-12 gap-2 items-center mt-2">
-                <div className="col-span-7"><input type="text" className="w-full border rounded p-2 text-sm" value={row.description} onChange={(e) => handleArrayChange('material_ordered', i, 'description', e.target.value)} /></div>
-                <div className="col-span-4"><input type="text" className="w-full border rounded p-2 text-sm" value={row.requisition} onChange={(e) => handleArrayChange('material_ordered', i, 'requisition', e.target.value)} /></div>
-                <div className="col-span-1 text-center"><button type="button" onClick={() => removeRow('material_ordered', i)} className="text-red-500 hover:text-red-700 text-lg font-bold">&times;</button></div>
+          <div className="overflow-x-auto pb-2">
+            <div className="min-w-[500px] space-y-2">
+              <div className="grid grid-cols-12 gap-2 font-medium text-sm text-gray-600 px-1">
+                <div className="col-span-7">Description</div>
+                <div className="col-span-4">Requisition No.</div>
+                <div className="col-span-1 text-center">Act</div>
               </div>
-            ))}
+              {formData.material_ordered.map((row, i) => (
+                <div key={i} className="grid grid-cols-12 gap-2 items-center mt-2">
+                  <div className="col-span-7"><input type="text" className="w-full border rounded p-2 text-sm" value={row.description} onChange={(e) => handleArrayChange('material_ordered', i, 'description', e.target.value)} /></div>
+                  <div className="col-span-4"><input type="text" className="w-full border rounded p-2 text-sm" value={row.requisition} onChange={(e) => handleArrayChange('material_ordered', i, 'requisition', e.target.value)} /></div>
+                  <div className="col-span-1 text-center"><button type="button" onClick={() => removeRow('material_ordered', i)} className="text-red-500 hover:text-red-700 text-lg font-bold">&times;</button></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
